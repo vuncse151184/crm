@@ -32,17 +32,27 @@ return [
     |            "postmark", "log", "array", "failover"
     |
     */
-
+//     'mailers' => [
+//         'failover' => [
+//             'transport' => 'failover',
+//             'mailers' => [
+//                 'postmark',
+//                 'mailgun',
+//                 'sendmail',
+//             ],
+//         ],
+//             // ...
+// ],
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'host' => env('MAIL_HOST', 'smtp1.gmail.com'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
-            'local_domain' => env('MAIL_EHLO_DOMAIN'),
+            // 'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
 
         'ses' => [
@@ -92,8 +102,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'nguyenvuforwork101@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'LARAVEL'),
     ],
 
     /*
