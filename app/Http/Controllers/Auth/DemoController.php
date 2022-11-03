@@ -14,8 +14,11 @@ class DemoController extends Controller
         //dd($this);
         echo SDemo::info();
     }
-    public function demoworkshop2(){
-        echo"1123";
+    public function demoworkshop2() : \Illuminate\Contracts\View\View
+    {
+        demo_global();
+
+        return view('auth.index');
     }
 
     // bool getTrueFale(Int a)

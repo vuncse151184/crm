@@ -1,34 +1,22 @@
 <?php
 
-// namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
+use App\Constracts\IUserAuthen as IAuth;
 
-// abstract class BaseController extends Controller implements
-// GROUP_A, GROUP_B
-// {
-//     public function demo_a(){
-//         return 'demo_a';
-//     }
+abstract class BaseController extends Controller implements IAuth{
+    function login(Request $request){
 
-//     public function callName();
+    }
 
-    // 100 cai function abstract
-//}
+    function register(Request $request):\Illuminate\Http\RedirectResponse
+    {
+        return redirect()->route('login');
+    }
 
-
-// interface GROUP_A{
-//     public function g_actiion1();
-//     public function g_actiion2();
-//     public function g_actiion3();
-//     public function g_actiion4();
-//     public function g_actiion5();
-// }
-
-// interface GROUP_B{
-//     public function g_actiion1();
-//     public function g_actiion2();
-//     public function g_actiion3();
-//     public function g_actiion4();
-//     public function g_actiion5();
-// }
+    function logout():\Illuminate\Http\RedirectResponse
+    {
+        return redirect()->route('login');
+    }
+}
