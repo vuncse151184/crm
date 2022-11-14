@@ -8,7 +8,10 @@ use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\DemoController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\UpdateAuthController;
+use App\Http\Controllers\Product\ProductImageController;
 use App\Http\Controllers\Product\ViewAllProductController;
+use App\Http\Controllers\Product\ViewDetailProductController;
+use App\Models\Product;
 use Illuminate\Auth\Events\PasswordReset;
 
 /*
@@ -24,9 +27,9 @@ use Illuminate\Auth\Events\PasswordReset;
 //GET, POST, PUT, PATCH, DELETE dung  trong RESTFUL API Body payload
 
 
-Route::get('/', function(){
-     return view('auth.index');
-})->name('home');
+// Route::get('/', function(){
+//      return view('auth.index');
+// })->name('home');
 
 Route::get('/login', function(){
     return view('auth.login');
@@ -90,9 +93,32 @@ Route::get('/edit/{id}',[UpdateAuthController::class,'update_user_info'])->name(
 
 
 
-
+Route::get('/product/createnew',function(){
+    return view('product.create');
+})->name('create');
 Route::controller(ViewAllProductController::class,)->group(function(){
     Route::get('/product/view','get_all_product')->name('ViewProductController.view');
+    Route::get('/product/delete/{product}','delete_product')->name('productdetele');
+    Route::get('/product/{product}/edit','edit_product')->name('product..edit');
+    Route::post('/product/{product}/update','update_product')->name('product.update');
+    Route::get('/product/delete_selected','delete_selected')->name('product.delete_selected');
+    Route::get('/product/search','search_product')->name('product.searchbyname');
+    Route::match(['post', 'get'],'/product/create/new','create_new_product')->name('product.create_new');
+
+    //Route::post('/product/create','create_new_product')->name('product.create');
+
 });
 
-// Route::get('/product/view',);
+
+Route::get('/pt', function(){
+    dd((new Product), Product::instance());
+     //);
+});
+
+Route::get('/product/add_img/{product}',function(){
+    return view('product.img');
+})->name('img');
+
+Route::controller(ProductImageController::class,)->group(function(){
+    Route::post('/product/addnewimg','add')->name('productImage.add');
+});

@@ -16,16 +16,13 @@ class AuthController extends BaseController
             if (Auth::attempt($credentials)) {
                 // Authentication passed...
                 $nId = $request->id;
-                return redirect()->route('product.view');
+                return redirect()->route('ViewProductController.view');
             }
             else{
                 $message= 'Wrong email or password';
                 printf($message);
                 return redirect()->route('login');
             }
-
-
-
     }
 
     public function logout():\Illuminate\Http\RedirectResponse{
